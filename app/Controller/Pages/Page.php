@@ -6,13 +6,30 @@ use \App\Utils\View;
 class Page {
 
     /**
+     * Método responsável por renderizar o top da página
+     * @return string
+     */
+    private static function getHeader(){
+        return View::render('pages/header');
+    }
+
+    /**
+     * Método responsável por renderizar o rodapé da página
+     */
+    private static function getFooter(){
+        return View::render('pages/footer');
+    }
+
+    /**
      * Método responsável para retornar todo o conteúdo (view) da nossa página genérica
      * @return string
      */
     public static function getPage($title, $content){
         return View::render('pages/page', [
+            'header' => self::getHeader(),
             'title' => $title,
-            'content' => $content
+            'content' => $content,
+            'footer' => self::getFooter()
         ]);
     }
 }
